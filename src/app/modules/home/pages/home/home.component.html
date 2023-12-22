@@ -1,0 +1,47 @@
+<article class="home-container">
+  <button
+    tuiAction
+    icon="tuiIconStarLarge"
+    type="button"
+    class="action"
+    (click)="onClick('Different')"
+  >
+    And now for something completely different
+  </button>
+
+  <button
+    tuiAction
+    icon="tuiIconBellLarge"
+    type="button"
+    class="action"
+    (click)="onClick('Inquisition')"
+  >
+    Nobody expects the Spanish Inquisition!
+  </button>
+
+  <button
+    tuiAction
+    icon="tuiIconFlagLarge"
+    type="button"
+    class="action"
+    (click)="onClick('Lumberjack')"
+  >
+    I'm a lumberjack and I'm OK
+  </button>
+
+  <section class="resources-actions">
+    <button tuiButton type="button" size="m" routerLink="/resources/books">Books</button>
+    <button tuiButton appearance="accent" type="button" size="m" routerLink="/resources/characters">
+      Characters
+    </button>
+    <button
+      tuiButton
+      appearance="secondary-destructive"
+      type="button"
+      size="m"
+      routerLink="/resources/houses"
+    >
+      Houses
+    </button>
+  </section>
+</article>
