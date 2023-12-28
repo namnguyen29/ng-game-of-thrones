@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  height: 100%;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: RobotoText;
+  src: url("/assets/fonts/roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: RobotoHeading;
+  src: url("/assets/fonts/roboto/Roboto-Bold.ttf");
+}
+
+:root {
+  --tui-font-text-s: normal 16px var(--tui-font-text);
+  --tui-text-font: RobotoText;
+  --tui-heading-font: RobotoHeading;
+}
