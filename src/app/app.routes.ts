@@ -11,6 +11,10 @@ export const appRoutes: Routes = [
       (await import('@got-modules/resources/resources.routes')).resourceRoutes,
   },
   {
+    path: 'login',
+    loadComponent: async () => (await import('@got-modules/auth/pages')).LoginComponent,
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full',

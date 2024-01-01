@@ -1,0 +1,29 @@
+<article class="login-page-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <img src="/assets/images/house-of-the-dragon-logo.webp" class="film-logo" alt="film-logo" />
+    <div class="form-row">
+      <tui-input formControlName="email">
+        <label for="email">Email address</label>
+        <input tuiTextfield id="email" type="email" />
+      </tui-input>
+      @if (emailControl.touched && emailControl.hasError("required")) {
+        <tui-error error="Email address is required"></tui-error>
+      }
+      @if (emailControl.touched && emailControl.hasError("email")) {
+        <tui-error error="Invalid email, please try again"></tui-error>
+      }
+    </div>
+
+    <div class="form-row">
+      <tui-input formControlName="password">
+        <label for="password">Password</label>
+        <input tuiTextfield id="password" type="password" />
+      </tui-input>
+      @if (passwordControl.touched && passwordControl.hasError("required")) {
+        <tui-error error="Password is required"></tui-error>
+      }
+    </div>
+
+    <button tuiButton appearance="primary" type="submit">Sign in</button>
+  </form>
+</article>
