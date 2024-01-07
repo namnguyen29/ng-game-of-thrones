@@ -10,12 +10,12 @@ import { provideStore } from '@ngrx/store';
 import { appRoutes } from './app.routes';
 import { getEnvironmentProvider } from '@got-core/configs';
 import { environment } from '@got-environments/environment.development';
-import { loggerInterceptor } from '@got-core/interceptors';
+import { authInterceptor, unauthorizedInterceptor } from '@got-core/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideHttpClient(withFetch(), withInterceptors([loggerInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, unauthorizedInterceptor])),
     provideRouter(appRoutes),
     getEnvironmentProvider(environment),
     provideEffects(),
