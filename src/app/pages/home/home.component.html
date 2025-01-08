@@ -1,0 +1,34 @@
+<article class="home-page">
+  <form class="example-form" [formGroup]="testForm" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        formControlName="username"
+        placeholder="Username"
+        name="username"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <app-text-input
+        formControlName="password"
+        [props]="{
+          type: 'password',
+          required: true,
+          placeholder: 'Password',
+          name: 'password',
+          autocomplete: 'new-password'
+        }"
+      ></app-text-input>
+      @if (testForm.controls['password'].errors?.['required']) {
+        <span matError> Password is required</span>
+      }
+    </mat-form-field>
+
+    <button type="submit">Submit</button>
+  </form>
+</article>

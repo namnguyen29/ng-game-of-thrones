@@ -1,0 +1,20 @@
+@use 'sass:map' as map;
+@use './theme-colors' as theme;
+
+:root {
+  --got-white: #{map.get(theme.$primary-palette, 100)};
+  --got-black: #{map.get(theme.$primary-palette, 0)};
+  --got-primary-30: #{map.get(theme.$primary-palette, 30)};
+  --got-primary-40: #{map.get(theme.$primary-palette, 40)};
+  --got-primary-50: #{map.get(theme.$primary-palette, 50)};
+  --got-primary-60: #{map.get(theme.$primary-palette, 60)};
+  --got-primary-70: #{map.get(theme.$primary-palette, 70)};
+  --got-text-default: #1c1c1c;
+  --got-max-xl: 1200px;
+  --got-max-lg: 992px;
+  --got-max-md: 768px;
+  --got-max-sm: 576px;
+  --mat-sys-body-small: 12px;
+  --mat-sys-body-medium: 14px;
+  --mat-sys-body-large: 16px;
+}
