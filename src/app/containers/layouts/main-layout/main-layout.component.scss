@@ -1,0 +1,23 @@
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  header {
+    padding: 1rem calc(100vw - 97.5%);
+    z-index: 25;
+    position: fixed;
+    width: 100%;
+    background-color: var(--got-white);
+    opacity: 0.95;
+    top: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px 0px;
+  }
+
+  &__content {
+    padding: 0rem calc(100vw - 97.5%);
+    margin-top: 5rem;
+    width: 100%;
+    flex: 1;
+  }
+}

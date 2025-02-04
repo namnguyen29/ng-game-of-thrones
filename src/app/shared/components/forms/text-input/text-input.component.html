@@ -1,0 +1,30 @@
+@if (!props().multi) {
+  <input
+    matInput
+    #inputTmpl
+    [required]="required"
+    [disabled]="disabled"
+    [value]="value"
+    [placeholder]="placeholder"
+    [type]="props().type"
+    [autocomplete]="props().autocomplete"
+    [name]="props().name"
+    (blur)="onBlur()"
+    (input)="onChange($event)"
+  />
+}
+
+@if (props().multi) {
+  <textarea
+    matInput
+    #inputTmpl
+    [required]="required"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [name]="props().name"
+    [autocomplete]="props().autocomplete"
+    (blur)="onBlur()"
+    (input)="onChange($event)"
+  ></textarea>
+}

@@ -1,0 +1,58 @@
+@use '@angular/material' as mat;
+@use './theme-colors' as theme;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul,
+ol {
+  list-style: none;
+  line-height: 1;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  font-size: var(--mat-sys-body-large);
+  color: var(--got-text-default);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  color-scheme: light dark;
+
+  @include mat.theme(
+    (
+      color: theme.$primary-palette,
+      density: 0
+    )
+  );
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
