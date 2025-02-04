@@ -6,7 +6,7 @@ import { switchMap, take } from 'rxjs';
 import { AuthService } from '@app-shared/services';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const accessToken$ = inject(AuthService).dumpAccessToken;
+  const accessToken$ = inject(AuthService).dumpAccessToken$;
 
   return accessToken$.pipe(
     take(1),
