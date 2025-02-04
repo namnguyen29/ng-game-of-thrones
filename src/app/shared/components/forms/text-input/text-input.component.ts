@@ -93,7 +93,7 @@ export class TextInputComponent
   }
 
   public get errorState(): boolean {
-    return (this.ngControl?.invalid && this.touched) ?? false;
+    return (this.ngControl?.invalid && this.touched) as boolean;
   }
 
   public writeValue(value: string): void {

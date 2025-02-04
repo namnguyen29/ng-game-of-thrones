@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { MainLayoutComponent } from '@app-containers/layouts';
+import { authGuard } from '@app-shared/guards';
 
 export const routes: Routes = [
   {
@@ -10,6 +11,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: async () => (await import('./pages/home/home.component')).HomeComponent,
+        canActivate: [authGuard],
         title: 'Home | Game Of Thrones'
       },
       {

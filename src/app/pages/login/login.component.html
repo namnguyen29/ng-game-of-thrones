@@ -1,1 +1,40 @@
-<p>login works!</p>
+@let usernameError = errorMessage().username;
+@let passwordError = errorMessage().password;
+
+<article class="login-container">
+  <div class="form-box">
+    <form [formGroup]="loginForm" (submit)="handleSubmit()">
+      <h2>Welcome GOT!</h2>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Username"
+          name="username"
+          autocomplete="off"
+          formControlName="username"
+        />
+        @if (usernameError) {
+          <mat-error>{{ usernameError }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          name="password"
+          autocomplete="off"
+          formControlName="password"
+        />
+        @if (passwordError) {
+          <mat-error>{{ passwordError }}</mat-error>
+        }
+      </mat-form-field>
+      <button mat-flat-button type="submit">SIGN IN</button>
+    </form>
+  </div>
+</article>
