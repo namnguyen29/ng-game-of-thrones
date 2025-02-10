@@ -19,3 +19,13 @@ $breakpoints: (
     @warn "Unknown breakpoint: #{$breakpoint}. Check your $breakpoints map.";
   }
 }
+
+@mixin truncate-text($lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: initial;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}

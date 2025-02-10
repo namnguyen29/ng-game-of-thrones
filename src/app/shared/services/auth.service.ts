@@ -11,7 +11,7 @@ import { StorageKey } from '@app-shared/enums';
 })
 export class AuthService {
   private readonly router = inject(Router);
-  public dumpAccessToken$: Observable<string> = of('accc___seees');
+  public dumpAccessToken$: Observable<string> = of('accc_seees_mee');
   public accessToken = toSignal(this.dumpAccessToken$, { initialValue: '' });
 
   public get isAuthenticated(): boolean {

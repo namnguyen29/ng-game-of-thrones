@@ -11,7 +11,7 @@ import { authInterceptor, unAuthInterceptor } from '@app-core/interceptors';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideFormFieldAppearance('outline'),
+    provideFormFieldAppearance('fill'),
     provideEnvironment(environment),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor, unAuthInterceptor])),
