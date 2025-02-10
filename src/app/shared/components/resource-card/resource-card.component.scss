@@ -1,0 +1,24 @@
+@use 'mixins' as mixins;
+
+p.title {
+  font-weight: 500;
+}
+
+img.main-thumbnail {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-header {
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.sub-title {
+  @include mixins.truncate-text(1);
+}
+
+.content {
+  margin-top: 1rem;
+  @include mixins.truncate-text(3);
+}

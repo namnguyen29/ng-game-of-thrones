@@ -1,11 +1,16 @@
+@use 'mixins' as mixins;
+
 .home-page {
+  max-width: var(--got-max-xl);
+  margin: 0rem auto;
   width: 100%;
 }
 
-.example-form {
-  margin: 0rem auto;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.cards {
+  display: grid;
+  gap: 1.5rem;
+
+  @include mixins.respond-to(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

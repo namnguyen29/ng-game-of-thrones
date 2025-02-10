@@ -1,0 +1,27 @@
+<mat-card class="card-container" appearance="outlined">
+  <mat-card-header class="card-header">
+    <mat-card-title>
+      <p class="title">{{ title() }}</p>
+    </mat-card-title>
+    <app-icon [svgIcon]="avatar()"></app-icon>
+    <mat-card-subtitle class="sub-title">
+      {{ subTitle() }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  @if (img()) {
+    <img mat-card-image class="main-thumbnail" [src]="img()" [alt]="title()" />
+  }
+
+  @if (content()) {
+    <mat-card-content>
+      <p class="content">
+        {{ content() }}
+      </p>
+    </mat-card-content>
+  }
+
+  <mat-card-actions>
+    <button mat-button (click)="viewDetail.emit()">Detail</button>
+  </mat-card-actions>
+</mat-card>

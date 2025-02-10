@@ -1,34 +1,34 @@
 <article class="home-page">
-  <form class="example-form" [formGroup]="testForm" (submit)="onSubmit()">
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input
-        matInput
-        required
-        type="text"
-        formControlName="username"
-        placeholder="Username"
-        name="username"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <app-text-input
-        formControlName="password"
-        [props]="{
-          type: 'password',
-          required: true,
-          placeholder: 'Password',
-          name: 'password',
-          autocomplete: 'new-password'
-        }"
-      ></app-text-input>
-      @if (testForm.controls['password'].errors?.['required']) {
-        <span matError> Password is required</span>
-      }
-    </mat-form-field>
-
-    <button type="submit">Submit</button>
-  </form>
+  <section class="cards">
+    <div>
+      <app-resource-card
+        title="House"
+        subTitle="House of Honor, Power, and Betrayal"
+        avatar="house"
+        img="got-house.webp"
+        content="A noble family with a rich history, bound by loyalty, power, and ambition. Each house fights for survival and dominance in the ever-changing game of thrones."
+        (viewDetail)="naviagteTo('houses')"
+      ></app-resource-card>
+    </div>
+    <div>
+      <app-resource-card
+        title="Book"
+        subTitle="A Tale of War, Honor, and Destiny"
+        avatar="book"
+        img="got-book.webp"
+        content="A tome filled with ancient knowledge, prophecies, and secrets that can change the fate of kingdoms. Some seek it for wisdom, others for power."
+        (viewDetail)="naviagteTo('books')"
+      ></app-resource-card>
+    </div>
+    <div>
+      <app-resource-card
+        title="Character"
+        subTitle="Legends Forged in Fire and Blood"
+        avatar="character"
+        img="got-character.webp"
+        content="A warrior, ruler, or outcast, shaped by war and destiny. Driven by honor, revenge, or ambition, they navigate a world of alliances and betrayals."
+        (viewDetail)="naviagteTo('characters')"
+      ></app-resource-card>
+    </div>
+  </section>
 </article>
