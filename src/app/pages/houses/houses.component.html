@@ -1,1 +1,24 @@
-<p>houses works!</p>
+<app-button
+  type="button"
+  fontIcon="arrow_back"
+  title="Back"
+  variant="base"
+  (onClick)="goHome()"
+></app-button>
+
+<article class="container">
+  <div class="container__filters">
+    <app-house-filter (filter)="handleHouseFilter($event)"></app-house-filter>
+  </div>
+  <section class="houses-container">
+    @for (house of houses$ | async; track $index) {
+      @let region = house.region || 'Unkown';
+      <app-resource-card
+        avatar="house"
+        [title]="house.name"
+        [subTitle]="region"
+        (viewDetail)="(null)"
+      ></app-resource-card>
+    }
+  </section>
+</article>

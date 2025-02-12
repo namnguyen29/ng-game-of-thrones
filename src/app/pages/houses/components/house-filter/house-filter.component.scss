@@ -1,0 +1,24 @@
+@use 'mixins' as mixins;
+
+.container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  @include mixins.respond-to(lg) {
+    flex-direction: row;
+  }
+
+  & .text-fields {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    @include mixins.respond-to(lg) {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  & .check-fields {
+    max-width: var(--got-max-sm);
+  }
+}

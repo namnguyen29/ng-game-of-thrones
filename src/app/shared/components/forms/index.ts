@@ -1,1 +1,1 @@
-export * from './text-input/text-input.component';
+export * from './datepicker/datepicker.component';

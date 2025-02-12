@@ -1,0 +1,15 @@
+.container {
+  max-width: var(--got-max-xl);
+  width: 100%;
+  margin: 0rem auto;
+
+  & .filters {
+    margin: 1rem 0rem;
+  }
+}
+
+.char-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}

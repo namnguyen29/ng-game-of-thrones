@@ -1,0 +1,16 @@
+.container {
+  max-width: var(--got-max-xl);
+  width: 100%;
+  margin: 0rem auto;
+
+  &__filters {
+    margin-top: 1rem;
+  }
+}
+
+.houses-container {
+  margin: 1rem 0rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
