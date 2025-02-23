@@ -1,0 +1,24 @@
+<section class="container" [formGroup]="houseFilter">
+  <div class="text-fields">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Region</mat-label>
+      <input matInput type="text" formControlName="region" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Words</mat-label>
+      <input matInput type="text" formControlName="words" />
+    </mat-form-field>
+  </div>
+
+  <div class="check-fields">
+    <mat-checkbox formControlName="hasWords">Has Words</mat-checkbox>
+    <mat-checkbox formControlName="hasTitles">Has Titles</mat-checkbox>
+    <mat-checkbox formControlName="hasSeats">Has Seats</mat-checkbox>
+    <mat-checkbox formControlName="hasDiedOut">Has Died Out </mat-checkbox>
+    <mat-checkbox formControlName="hasAncestralWeapons">Has Ancestral Weapons</mat-checkbox>
+  </div>
+</section>

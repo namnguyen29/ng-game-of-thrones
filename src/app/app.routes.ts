@@ -30,12 +30,6 @@ export const routes: Routes = [
         loadComponent: async () =>
           (await import('./pages/characters/characters.component')).CharactersComponent,
         title: 'Characters | Game Of Thrones'
-      },
-      {
-        path: '404',
-        loadComponent: async () =>
-          (await import('./pages/not-found/not-found.component')).NotFoundComponent,
-        title: 'Page Not Found'
       }
     ]
   },

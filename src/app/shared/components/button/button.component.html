@@ -1,0 +1,38 @@
+@if (variant() === 'base') {
+  <ng-container *ngTemplateOutlet="baseTmpl"></ng-container>
+}
+
+@if (variant() === 'primary') {
+  <ng-container *ngTemplateOutlet="primaryTmpl"></ng-container>
+}
+
+@if (variant() === 'outline') {
+  <ng-container *ngTemplateOutlet="outlineTmpl"></ng-container>
+}
+
+<ng-template #baseTmpl>
+  <button mat-button [type]="type()" (click)="onClick.emit()">
+    @if (fontIcon()) {
+      <mat-icon [fontIcon]="fontIcon()"></mat-icon>
+    }
+    <span>{{ title() }}</span>
+  </button>
+</ng-template>
+
+<ng-template #primaryTmpl>
+  <button mat-flat-button [type]="type()" (click)="onClick.emit()">
+    @if (fontIcon()) {
+      <mat-icon [fontIcon]="fontIcon()"></mat-icon>
+    }
+    <span>{{ title() }}</span>
+  </button>
+</ng-template>
+
+<ng-template #outlineTmpl>
+  <button mat-stroked-button [type]="type()" (click)="onClick.emit()">
+    @if (fontIcon()) {
+      <mat-icon [fontIcon]="fontIcon()"></mat-icon>
+    }
+    <span>{{ title() }}</span>
+  </button>
+</ng-template>

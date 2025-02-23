@@ -1,1 +1,23 @@
-<p>characters works!</p>
+<app-button
+  type="button"
+  fontIcon="arrow_back"
+  title="Back"
+  variant="base"
+  (onClick)="goHome()"
+></app-button>
+
+<article class="container">
+  <div class="filters">
+    <app-chracter-filter (filter)="handleCharacterFilter($event)"></app-chracter-filter>
+  </div>
+  <section class="char-container">
+    @for (character of characters$ | async; track $index) {
+      <app-resource-card
+        avatar="character"
+        [title]="character.name || 'Unkown'"
+        [subTitle]="character.gender || 'Unkown'"
+        (viewDetail)="(null)"
+      ></app-resource-card>
+    }
+  </section>
+</article>

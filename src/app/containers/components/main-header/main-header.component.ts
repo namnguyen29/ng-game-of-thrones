@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { IconComponent } from '@app-shared/components';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-main-header',
-  imports: [RouterLink, IconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink, MatIconModule],
   templateUrl: './main-header.component.html',
-  styleUrl: './main-header.component.scss'
+  styleUrl: './main-header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainHeaderComponent {}

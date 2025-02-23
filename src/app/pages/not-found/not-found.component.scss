@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100dvh;
+  gap: 1rem;
+
+  & h2 {
+    font-size: 4rem;
+  }
+
+  & p {
+    font-size: 2rem;
+  }
+}
