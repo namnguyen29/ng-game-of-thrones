@@ -10,7 +10,7 @@
   <div class="container__filters">
     <app-house-filter (filter)="handleHouseFilter($event)"></app-house-filter>
   </div>
-  <section class="houses-container">
+  <div #housesTmpl class="houses-container">
     @for (house of houses$ | async; track $index) {
       @let region = house.region || 'Unkown';
       <app-resource-card
@@ -20,5 +20,5 @@
         (viewDetail)="(null)"
       ></app-resource-card>
     }
-  </section>
+  </div>
 </article>

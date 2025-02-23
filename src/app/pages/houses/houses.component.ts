@@ -1,5 +1,12 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  viewChild
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -29,9 +36,11 @@ export class HousesComponent implements OnInit {
   private readonly houseApi = inject(HouseApi);
   private readonly router = inject(Router);
   public houses$!: Observable<House[]>;
+  public housesRef = viewChild<ElementRef<HTMLDivElement>>('housesTmpl');
 
   public ngOnInit(): void {
     this.houses$ = this.houseApi.getHouses();
+    console.log('houses ref::', { ref: this.housesRef()?.nativeElement });
   }
 
   public goHome(): void {
