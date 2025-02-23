@@ -14,12 +14,19 @@ import { MatInputModule } from '@angular/material/input';
 import { merge, Subject, takeUntil } from 'rxjs';
 
 import { AuthService } from '@app-shared/services';
+import { ButtonComponent } from '@app-shared/components';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatButtonModule, MatInputModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    ButtonComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit, OnDestroy {
@@ -55,7 +62,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   public handleSubmit(): void {
     const isFormValid = this.loginForm.valid;
     if (isFormValid) {
-      console.log('Form submitted');
       this.authService.login();
     } else {
       this.loginForm.markAllAsTouched();

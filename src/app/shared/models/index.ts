@@ -3,3 +3,4 @@ export * from './book.model';
 export * from './character.model';
 export * from './house.model';
 export * from './inputs.model';
+export * from './resource-type.model';

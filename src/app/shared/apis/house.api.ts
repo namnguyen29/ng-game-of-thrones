@@ -4,20 +4,20 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ENV_CONFIG } from '@app-core/configs';
-import { Book, BookFilter } from '@app-shared/models';
+import { House, HouseFilter } from '@app-shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookApi {
+export class HouseApi {
   private readonly env = inject(ENV_CONFIG);
   private readonly http = inject(HttpClient);
 
-  public getBooks(filter?: BookFilter): Observable<Book[]> {
+  public getHouses(filter?: HouseFilter): Observable<House[]> {
     let params = new HttpParams();
     if (filter) {
       Object.keys(filter).forEach((key) => {
-        const filterValue = filter[key as keyof BookFilter];
+        const filterValue = filter[key as keyof HouseFilter];
 
         if (filterValue) {
           params = params.set(key, `${filterValue}`);
@@ -27,8 +27,12 @@ export class BookApi {
       });
     }
 
-    return this.http.get<Book[]>(`${this.env.baseUrl}/books`, {
+    return this.http.get<House[]>(`${this.env.baseUrl}/houses`, {
       params
     });
+  }
+
+  public getHouseById(id: number): Observable<House> {
+    return this.http.get<House>(`${this.env.baseUrl}/houses/${id}`);
   }
 }

@@ -2,6 +2,7 @@
 
 p.title {
   font-weight: 500;
+  @include mixins.truncate-text(1);
 }
 
 img.main-thumbnail {

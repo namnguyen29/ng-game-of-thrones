@@ -13,7 +13,7 @@ export interface Book {
 }
 
 export type BookFilter = Partial<{
-  name: string;
-  fromReleaseDate: Date;
-  toReleaseDate: Date;
+  name: string | null;
+  fromReleaseDate: Date | null | string;
+  toReleaseDate: Date | null | string;
 }>;

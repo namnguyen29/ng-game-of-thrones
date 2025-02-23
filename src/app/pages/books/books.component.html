@@ -1,1 +1,22 @@
-<p>books works!</p>
+<app-button
+  type="button"
+  fontIcon="arrow_back"
+  title="Back"
+  variant="base"
+  (onClick)="goHome()"
+></app-button>
+
+<article class="books-container">
+  <app-books-filter (filter)="handleBookFilter($event)"></app-books-filter>
+
+  <section class="wrapper">
+    @for (book of books$ | async; track book.isbn) {
+      <app-resource-card
+        avatar="book"
+        [title]="book.name"
+        [subTitle]="book.publisher"
+        (viewDetail)="(null)"
+      ></app-resource-card>
+    }
+  </section>
+</article>
