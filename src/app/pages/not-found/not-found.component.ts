@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-
-import { ButtonComponent } from '@app-shared/components';
 
 @Component({
   selector: 'app-not-found',
-  imports: [ButtonComponent],
+  imports: [MatButtonModule],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

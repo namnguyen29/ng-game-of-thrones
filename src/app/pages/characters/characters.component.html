@@ -1,15 +1,14 @@
-<app-button
-  type="button"
-  fontIcon="arrow_back"
-  title="Back"
-  variant="base"
-  (onClick)="goHome()"
-></app-button>
+<button mat-button type="button" (click)="goHome()"><mat-icon fontIcon="arrow_back"></mat-icon>Back</button>
 
 <article class="container">
   <div class="filters">
     <app-chracter-filter (filter)="handleCharacterFilter($event)"></app-chracter-filter>
   </div>
+
+  @if (isLoading) {
+    <app-cards-skeleton></app-cards-skeleton>
+  }
+
   <section class="char-container">
     @for (character of characters$ | async; track $index) {
       <app-resource-card

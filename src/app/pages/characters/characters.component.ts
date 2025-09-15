@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 
-import { ButtonComponent, ResourceCardComponent } from '@app-shared/components';
+import { CardsSkeletonComponent, ResourceCardComponent } from '@app-shared/components';
 import { CharacterApi } from '@app-shared/apis';
-import { Character, CharacterFilter } from '@app-shared/models';
+import type { Character, CharacterFilter } from '@app-shared/models';
 import { ChracterFilterComponent } from './components';
 
 @Component({
@@ -16,10 +16,9 @@ import { ChracterFilterComponent } from './components';
   imports: [
     MatIconModule,
     MatButtonModule,
-    ButtonComponent,
     AsyncPipe,
+    CardsSkeletonComponent,
     ResourceCardComponent,
-    ButtonComponent,
     ChracterFilterComponent
   ],
   templateUrl: './characters.component.html',
@@ -30,14 +29,16 @@ export class CharactersComponent {
   private readonly router = inject(Router);
   private readonly characterApi = inject(CharacterApi);
   public characters$!: Observable<Character[]>;
+  public isLoading = false;
 
   constructor() {
-    this.characters$ = this.characterApi.getCharacters();
+    this.isLoading = true;
+    this.characters$ = this.characterApi.getCharacters().pipe(finalize(() => (this.isLoading = false)));
   }
 
   public handleCharacterFilter(value: CharacterFilter): void {
     const { name, gender, culture, born, died, isAlive } = value;
-    let queryParams = {
+    const queryParams = {
       name: name !== '' && name !== null ? name : null,
       gender: gender !== '' && gender !== null ? gender : null,
       culture: culture !== '' && culture !== null ? culture : null,

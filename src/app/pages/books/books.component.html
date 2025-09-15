@@ -1,13 +1,14 @@
-<app-button
-  type="button"
-  fontIcon="arrow_back"
-  title="Back"
-  variant="base"
-  (onClick)="goHome()"
-></app-button>
+<button mat-button type="button" (click)="goHome()">
+  <mat-icon fontIcon="arrow_back"></mat-icon>
+  <span>Back</span>
+</button>
 
 <article class="books-container">
   <app-books-filter (filter)="handleBookFilter($event)"></app-books-filter>
+
+  @if (isLoading) {
+    <app-cards-skeleton></app-cards-skeleton>
+  }
 
   <section class="wrapper">
     @for (book of books$ | async; track book.isbn) {
