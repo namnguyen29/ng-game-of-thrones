@@ -4,20 +4,20 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 
 import { BookApi } from '@app-shared/apis';
-import { ButtonComponent, ResourceCardComponent } from '@app-shared/components';
+import { CardsSkeletonComponent, ResourceCardComponent } from '@app-shared/components';
 import { BooksFilterComponent } from './components';
-import { Book, BookFilter } from '@app-shared/models';
+import type { Book, BookFilter } from '@app-shared/models';
 
 @Component({
   selector: 'app-books',
   imports: [
     AsyncPipe,
+    CardsSkeletonComponent,
     ResourceCardComponent,
     MatButtonModule,
-    ButtonComponent,
     MatIconModule,
     BooksFilterComponent
   ],
@@ -29,9 +29,11 @@ export class BooksComponent implements OnInit {
   private readonly bookApi = inject(BookApi);
   private readonly router = inject(Router);
   public books$!: Observable<Book[]>;
+  public isLoading = false;
 
   public ngOnInit(): void {
-    this.books$ = this.bookApi.getBooks();
+    this.isLoading = true;
+    this.books$ = this.bookApi.getBooks().pipe(finalize(() => (this.isLoading = false)));
   }
 
   public handleBookFilter(value: BookFilter): void {

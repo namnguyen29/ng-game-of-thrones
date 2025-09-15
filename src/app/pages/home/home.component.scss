@@ -9,8 +9,12 @@
 .cards {
   display: grid;
   gap: 1.5rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 
-  @include mixins.respond-to(md) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  &__items {
+    grid-column: span 12;
+    @include mixins.respond-to(lg) {
+      grid-column: span 4;
+    }
   }
 }

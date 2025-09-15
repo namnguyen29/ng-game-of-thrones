@@ -1,15 +1,17 @@
-<app-button
-  type="button"
-  fontIcon="arrow_back"
-  title="Back"
-  variant="base"
-  (onClick)="goHome()"
-></app-button>
+<button mat-button type="button" (click)="goHome()">
+  <mat-icon fontIcon="arrow_back"></mat-icon>
+  <span>Back</span>
+</button>
 
 <article class="container">
   <div class="container__filters">
     <app-house-filter (filter)="handleHouseFilter($event)"></app-house-filter>
   </div>
+
+  @if (isLoading) {
+    <app-cards-skeleton></app-cards-skeleton>
+  }
+
   <section class="houses-container">
     @for (house of houses$ | async; track $index) {
       @let region = house.region || 'Unkown';
