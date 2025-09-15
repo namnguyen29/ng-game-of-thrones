@@ -4,7 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ENV_CONFIG } from '@app-core/configs';
-import { Character, CharacterFilter } from '@app-shared/models';
+import type { Character, CharacterFilter } from '@app-shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,9 @@ export class CharacterApi {
     return this.http.get<Character[]>(`${this.env.baseUrl}/characters`, {
       params
     });
+  }
+
+  public getCharacterById(id: number): Observable<Character> {
+    return this.http.get<Character>(`${this.env.baseUrl}/characters/${id}`);
   }
 }

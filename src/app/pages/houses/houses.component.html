@@ -17,9 +17,10 @@
       @let region = house.region || 'Unkown';
       <app-resource-card
         avatar="house"
+        [url]="house.url"
         [title]="house.name"
         [subTitle]="region"
-        (viewDetail)="(null)"
+        (viewDetail)="viewHouse($event)"
       ></app-resource-card>
     }
   </section>

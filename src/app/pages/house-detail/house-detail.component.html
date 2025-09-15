@@ -1,0 +1,70 @@
+@if (house$ | async; as house) {
+  <section class="container">
+    <header class="header">
+      <div class="house-sigil">🐺</div>
+      <h2 class="house-name">{{ house.name }}</h2>
+      <span class="house-region">{{ house.region }}</span>
+    </header>
+
+    <div class="content-grid">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title><h3>Basic Information</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="info-item">
+            <span class="info-label">Current Lord:</span>
+            @if (house.currentLord) {
+              <a [routerLink]="['/characters', house.currentLord]" class="info-value">View character</a>
+            }
+          </div>
+          <div class="info-item">
+            <span class="info-label">Region:</span>
+            <span class="info-value">{{ house.region }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Founded:</span>
+            <span class="info-value">{{ house.founded }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title><h3>Description</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          {{ house.coatOfArms }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    @if (house.swornMembers.length > 0) {
+      <mat-card appearance="outlined" class="members-section">
+        <mat-card-header>
+          <mat-card-title><h3>Main Members</h3></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          @if (isLoading()) {
+            <app-cards-skeleton [numberOfSkeletons]="5"></app-cards-skeleton>
+          }
+
+          <div class="members-grid">
+            @for (member of swornMembers$ | async; track $index) {
+              <mat-card appearance="outlined" class="member-card">
+                <mat-card-content>
+                  <div class="member-name">{{ member.name }}</div>
+                  <div class="member-title">{{ member.culture || 'Unkown' }}</div>
+                </mat-card-content>
+                <mat-card-actions>
+                  <a [routerLink]="['/characters', house.currentLord]" class="info-value">View character</a>
+                </mat-card-actions>
+              </mat-card>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+}

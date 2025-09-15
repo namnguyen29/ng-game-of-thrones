@@ -2,5 +2,23 @@
   <a routerLink="/">
     <img src="ng-icon.svg" alt="ng-icon" width="150" loading="eager" />
   </a>
-  <mat-icon svgIcon="user-icon"></mat-icon>
+  <button mat-icon-button #trigger="cdkOverlayOrigin" cdkOverlayOrigin type="button" (click)="toggleUserMenu()">
+    <mat-icon svgIcon="user-icon"></mat-icon>
+  </button>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOpen]="isOpen()"
+  (detach)="closeMenu()"
+  (backdropClick)="closeMenu()"
+>
+  <ul class="menu-list">
+    <li>
+      <button mat-button type="button" (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</ng-template>

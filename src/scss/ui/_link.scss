@@ -2,3 +2,9 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;
 }
+a {
+  text-decoration: none;
+  &:hover {
+    color: var(--got-primary-70);
+  }
+}
