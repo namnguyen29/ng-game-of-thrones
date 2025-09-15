@@ -41,6 +41,10 @@ export class HousesComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  public viewHouse(id: string): void {
+    this.router.navigate(['houses', id]);
+  }
+
   public handleHouseFilter(value: HouseFilter): void {
     const { name, region, words, hasAncestralWeapons, hasDiedOut, hasSeats, hasTitles, hasWords } = value;
     const queryParams = {

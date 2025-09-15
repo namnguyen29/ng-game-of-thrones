@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, Signal } from '@angular/core';
 
 @Component({
   selector: 'app-cards-skeleton',
   templateUrl: './cards-skeleton.component.html',
   styleUrl: './cards-skeleton.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardsSkeletonComponent {
-  skeletons = Array.from({ length: 12 }, (_, index) => index + 1);
+  public numberOfSkeletons = input<number>(12);
+  public skeletons: Signal<number[]> = computed(() =>
+    Array.from({ length: this.numberOfSkeletons() }, (_, index) => index + 1)
+  );
 }

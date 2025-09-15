@@ -1,0 +1,85 @@
+@use 'mixins' as mixin;
+
+.container {
+  max-width: var(--got-max-xl);
+  width: 100%;
+  margin: 0px auto;
+}
+
+.header {
+  text-align: center;
+  padding: 2.5rem 0;
+  border-bottom: 2px solid var(--got-text-default);
+  margin-bottom: 2.5rem;
+}
+
+.house-sigil {
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0 auto 1.25rem;
+  background: var(--got-bg-dark, #2d3748);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--got-border, #718096);
+  font-size: 3rem;
+}
+
+.house-name {
+  font-size: 3rem;
+  margin-bottom: 0.625rem;
+}
+
+.house-motto {
+  font-size: 1.2rem;
+  color: #a0aec0;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.house-region {
+  background: var(--got-bg-dark, #2d3748);
+  padding: 0.5rem 1.25rem;
+  border-radius: 1.25rem;
+  display: inline-block;
+  color: var(--got-text-light, #e2e8f0);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+
+  @include mixin.respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  & .info-value {
+    margin-left: auto;
+  }
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 0.5rem;
+
+  & .member-card {
+    grid-column: span 12;
+    display: flex;
+    @include mixin.respond-to(md) {
+      grid-column: span 2;
+    }
+  }
+
+  & .member-name {
+    @include mixin.truncate-text(1);
+  }
+}

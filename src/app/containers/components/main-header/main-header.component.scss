@@ -3,3 +3,22 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.menu-list {
+  width: 100px;
+  border: solid 1px #ccc;
+  border-radius: 0.5rem;
+  background-color: var(--got-white);
+  text-align: center;
+  padding: 10px;
+}
+
+.menu-list > li {
+  list-style-type: none;
+  border-bottom: solid 1px #8b8b8b;
+  padding: 8px 0;
+}
+
+.menu-list > li:last-child {
+  border-bottom: none;
+}
