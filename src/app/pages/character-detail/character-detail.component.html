@@ -1,1 +1,96 @@
-<p>character-detail works!</p>
+<a mat-button routerLink="/characters">
+  <mat-icon fontIcon="arrow_back"></mat-icon>
+  Back</a
+>
+@if (character$ | async; as character) {
+  <article class="container">
+    <div class="header">
+      <h2 class="character-name">{{ character.name || 'Unkown' }}</h2>
+      <p class="character-title">{{ character.titles[0] }}</p>
+    </div>
+
+    <div class="content">
+      <div class="info-grid">
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>person</mat-icon>
+            Name
+          </div>
+          <p class="field-value">{{ character.name || 'Unkown' }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>wc</mat-icon>
+            Gender
+          </div>
+          <p class="field-value">{{ character.gender }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>cake</mat-icon>
+            Born
+          </div>
+          <p class="field-value">{{ character.born }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>public</mat-icon>
+            Culture
+          </div>
+          <p class="field-value">{{ character.culture }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>man</mat-icon>
+            Father
+          </div>
+          <p class="field-value">{{ character.father }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>woman</mat-icon>
+            Mother
+          </div>
+          <p class="field-value">{{ character.mother }}</p>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <div class="field-label">
+            <mat-icon>favorite</mat-icon>
+            Status
+          </div>
+          <div class="field-value">
+            <button mat-flat-button type="button">
+              @if (character.died) {
+                Alive
+              } @else {
+                Died
+              }
+            </button>
+          </div>
+        </mat-card>
+
+        @if (character.playedBy.length > 0) {
+          <mat-card class="info-card">
+            <div class="field-label">
+              <mat-icon>movie</mat-icon>
+              Played By
+            </div>
+            <div class="field-value">
+              <div class="actors-list">
+                @for (actor of character.playedBy; track $index) {
+                  <span class="actor-chip">{{ actor }}</span>
+                }
+              </div>
+            </div>
+          </mat-card>
+        }
+      </div>
+    </div>
+  </article>
+}
