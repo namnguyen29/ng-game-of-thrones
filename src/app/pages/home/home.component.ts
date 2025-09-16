@@ -19,7 +19,16 @@ export class HomeComponent {
     this.meta.addTags([
       { name: 'description', content: 'Chi tiết sách Angular với SSR SEO friendly Nam' },
       { name: 'keywords', content: 'Angular, SSR, SEO, Book Detail' },
-      { name: 'robots', content: 'index, follow' }
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:title', content: 'Angular SSR SEO Example - Book Detail' },
+      { property: 'og:description', content: 'Chi tiết sách Angular với SSR SEO friendly' },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:url', content: 'ng-game-of-thrones.vercel.app/got-house.webp' },
+      { property: 'og:image', content: 'ng-game-of-thrones.vercel.app/got-house.webp' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Angular SSR SEO Example - Book Detail' },
+      { name: 'twitter:description', content: 'Chi tiết sách Angular với SSR SEO friendly' },
+      { name: 'twitter:image', content: 'ng-game-of-thrones.vercel.app/got-house.webp' }
     ]);
   }
 
