@@ -15,7 +15,7 @@
         avatar="character"
         [title]="character.name || 'Unkown'"
         [subTitle]="character.gender || 'Unkown'"
-        (viewDetail)="(null)"
+        (viewDetail)="viewCharacterDetail(character.url)"
       ></app-resource-card>
     }
   </section>

@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { finalize, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 
 import { CardsSkeletonComponent, ResourceCardComponent } from '@app-shared/components';
 import { CharacterApi } from '@app-shared/apis';
 import type { Character, CharacterFilter } from '@app-shared/models';
 import { ChracterFilterComponent } from './components';
+import { StringUtil } from '@app-shared/utils';
 
 @Component({
   selector: 'app-characters',
@@ -33,7 +34,10 @@ export class CharactersComponent {
 
   constructor() {
     this.isLoading = true;
-    this.characters$ = this.characterApi.getCharacters().pipe(finalize(() => (this.isLoading = false)));
+    this.characters$ = this.characterApi.getCharacters().pipe(
+      map((characters) => characters.map((char) => ({ ...char, url: StringUtil.getResourceIdFromUrl(char.url) }))),
+      finalize(() => (this.isLoading = false))
+    );
   }
 
   public handleCharacterFilter(value: CharacterFilter): void {
@@ -52,6 +56,10 @@ export class CharactersComponent {
       queryParamsHandling: 'merge'
     });
     this.characters$ = this.characterApi.getCharacters(value);
+  }
+
+  public viewCharacterDetail(url: string): void {
+    this.router.navigate(['characters', url]);
   }
 
   public goHome(): void {

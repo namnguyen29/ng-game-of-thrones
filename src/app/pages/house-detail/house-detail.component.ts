@@ -1,18 +1,20 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { finalize, forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 
 import { CharacterApi, HouseApi } from '@app-shared/apis';
+import { CardsSkeletonComponent } from '@app-shared/components';
 import type { Character, House } from '@app-shared/models';
 import { StringUtil } from '@app-shared/utils';
-import { CardsSkeletonComponent } from '@app-shared/components';
 
 @Component({
   selector: 'app-house-detail',
-  imports: [AsyncPipe, RouterLink, MatCardModule, CardsSkeletonComponent],
+  imports: [AsyncPipe, RouterLink, MatIconModule, MatCardModule, MatButtonModule, CardsSkeletonComponent],
   templateUrl: './house-detail.component.html',
   styleUrl: './house-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -20,12 +22,13 @@ import { CardsSkeletonComponent } from '@app-shared/components';
 export class HouseDetailComponent implements OnInit {
   private readonly houseApi = inject(HouseApi);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly characterApi = inject(CharacterApi);
   public house$!: Observable<House>;
   public swornMembers$!: Observable<Character[]>;
   public isLoading = signal(false);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.house$ = this.route.params.pipe(
       tap(() => this.isLoading.set(true)),
       map((params) => +params['houseId']),
@@ -53,6 +56,6 @@ export class HouseDetailComponent implements OnInit {
   }
 
   public gotoCharacterDetail(characterId: string): void {
-    console.log('Go to character detail', characterId);
+    this.router.navigate(['characters', characterId]);
   }
 }

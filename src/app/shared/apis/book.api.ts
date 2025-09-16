@@ -13,6 +13,10 @@ export class BookApi {
   private readonly env = inject(ENV_CONFIG);
   private readonly http = inject(HttpClient);
 
+  public getBookById(bookId: string): Observable<Book> {
+    return this.http.get<Book>(`${this.env.baseUrl}/books/${bookId}`);
+  }
+
   public getBooks(filter?: BookFilter): Observable<Book[]> {
     let params = new HttpParams();
     if (filter) {

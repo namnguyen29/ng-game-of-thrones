@@ -1,1 +1,104 @@
-<p>book-detail works!</p>
+<a routerLink="/books" mat-button>
+  <mat-icon fontIcon="arrow_back"></mat-icon>
+  Back
+</a>
+
+@let book = book$ | async;
+<section class="container">
+  <div class="book-header">
+    <div class="book-cover">
+      <span>⚔️</span>
+      {{ book?.name }}
+    </div>
+    <div class="book-info">
+      <h2>{{ book?.name }}</h2>
+      <p class="subtitle">{{ book?.publisher }}</p>
+
+      <div class="book-meta">
+        <div class="meta-item">
+          <mat-icon fontIcon="menu_book"></mat-icon>
+          <div class="meta-content">
+            <div class="meta-label">Pages</div>
+            <div class="meta-value">{{ book?.numberOfPages }}</div>
+          </div>
+        </div>
+        <div class="meta-item">
+          <mat-icon fontIcon="tags"></mat-icon>
+          <div class="meta-content">
+            <div class="meta-label">ISBN</div>
+            <div class="meta-value">{{ book?.isbn }}</div>
+          </div>
+        </div>
+        <div class="meta-item">
+          <mat-icon fontIcon="calendar_today"></mat-icon>
+          <div class="meta-content">
+            <div class="meta-label">Published</div>
+            <div class="meta-value">{{ book?.released | date }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <mat-card class="card">
+      <mat-card-header class="card-header">
+        <mat-icon fontIcon="person"></mat-icon>
+        <h2 class="card-title">Authors</h2>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <div class="author-list">
+          @for (author of book?.authors; track $index) {
+            <div class="author-item">
+              <div class="author-avatar">GM</div>
+              <div class="author-info">
+                <h3>{{ author }}</h3>
+                <p>Author of {{ book?.name }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="card">
+      <div class="card-header">
+        <mat-icon fontIcon="groups"></mat-icon>
+        <h2 class="card-title">Key Characters</h2>
+      </div>
+      <div class="card-content">
+        <div class="character-grid">
+          @for (keyCharacter of keyCharacters$ | async; track $index) {
+            <mat-card class="character-card">
+              <mat-card-content>
+                <div class="character-avatar">🐺</div>
+                <div class="character-name">{{ keyCharacter.name }}</div>
+                <div class="character-house">{{ keyCharacter.gender }}</div>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <mat-icon fontIcon="visibility"></mat-icon>
+        <h2 class="card-title">POV Characters</h2>
+      </div>
+      <div class="card-content">
+        <div class="pov-list">
+          @for (povCharacter of povCharacters$ | async; track $index) {
+            <div class="pov-item">
+              <span class="pov-avatar">🐺</span>
+              <div class="pov-info">
+                <h4>{{ povCharacter.name }}</h4>
+                <div class="pov-chapters">Appear in {{ povCharacter.tvSeries.length }} TV Series</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

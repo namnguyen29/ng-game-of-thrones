@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { finalize, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 
 import { BookApi } from '@app-shared/apis';
 import { CardsSkeletonComponent, ResourceCardComponent } from '@app-shared/components';
 import { BooksFilterComponent } from './components';
 import type { Book, BookFilter } from '@app-shared/models';
+import { StringUtil } from '@app-shared/utils';
 
 @Component({
   selector: 'app-books',
@@ -33,7 +34,10 @@ export class BooksComponent implements OnInit {
 
   public ngOnInit(): void {
     this.isLoading = true;
-    this.books$ = this.bookApi.getBooks().pipe(finalize(() => (this.isLoading = false)));
+    this.books$ = this.bookApi.getBooks().pipe(
+      map((books) => books.map((book) => ({ ...book, url: StringUtil.getResourceIdFromUrl(book.url) }))),
+      finalize(() => (this.isLoading = false))
+    );
   }
 
   public handleBookFilter(value: BookFilter): void {
@@ -51,5 +55,9 @@ export class BooksComponent implements OnInit {
 
   public goHome(): void {
     this.router.navigate(['/']);
+  }
+
+  public viewBookDetail(bookId: string): void {
+    this.router.navigate(['/books', bookId]);
   }
 }

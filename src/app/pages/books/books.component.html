@@ -16,7 +16,7 @@
         avatar="book"
         [title]="book.name"
         [subTitle]="book.publisher"
-        (viewDetail)="(null)"
+        (viewDetail)="viewBookDetail(book.url)"
       ></app-resource-card>
     }
   </section>
