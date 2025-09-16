@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -14,7 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideFormFieldAppearance('fill'),
     provideEnvironment(environment),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, unAuthInterceptor])),
-    provideAnimationsAsync()
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, unAuthInterceptor])),
+    provideAnimationsAsync(),
+    provideClientHydration(withEventReplay())
   ]
 };
