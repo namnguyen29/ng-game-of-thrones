@@ -1,5 +1,9 @@
-@if (house$ | async; as house) {
-  <section class="container">
+<a mat-button routerLink="/houses">
+  <mat-icon fontIcon="arrow_back"></mat-icon>
+  Back</a
+>
+<section class="container">
+  @if (house$ | async; as house) {
     <header class="header">
       <div class="house-sigil">🐺</div>
       <h2 class="house-name">{{ house.name }}</h2>
@@ -66,5 +70,5 @@
         </mat-card-content>
       </mat-card>
     }
-  </section>
-}
+  }
+</section>
