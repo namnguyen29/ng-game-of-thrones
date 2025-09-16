@@ -69,13 +69,15 @@
       <div class="card-content">
         <div class="character-grid">
           @for (keyCharacter of keyCharacters$ | async; track $index) {
-            <mat-card class="character-card">
-              <mat-card-content>
-                <div class="character-avatar">🐺</div>
-                <div class="character-name">{{ keyCharacter.name }}</div>
-                <div class="character-house">{{ keyCharacter.gender }}</div>
-              </mat-card-content>
-            </mat-card>
+            <a [routerLink]="['/characters', keyCharacter.url]">
+              <mat-card class="character-card">
+                <mat-card-content>
+                  <div class="character-avatar">🐺</div>
+                  <div class="character-name">{{ keyCharacter.name }}</div>
+                  <div class="character-house">{{ keyCharacter.gender }}</div>
+                </mat-card-content>
+              </mat-card>
+            </a>
           }
         </div>
       </div>
@@ -89,13 +91,13 @@
       <div class="card-content">
         <div class="pov-list">
           @for (povCharacter of povCharacters$ | async; track $index) {
-            <div class="pov-item">
+            <a class="pov-item" [routerLink]="['/characters', povCharacter.url]">
               <span class="pov-avatar">🐺</span>
               <div class="pov-info">
                 <h4>{{ povCharacter.name }}</h4>
                 <div class="pov-chapters">Appear in {{ povCharacter.tvSeries.length }} TV Series</div>
               </div>
-            </div>
+            </a>
           }
         </div>
       </div>
