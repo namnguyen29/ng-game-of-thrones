@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { ResourceCardComponent } from '@app-shared/components';
@@ -12,6 +13,28 @@ import { ResourceCardComponent } from '@app-shared/components';
 })
 export class HomeComponent {
   private readonly router = inject(Router);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
+  constructor() {
+    this.title.setTitle('Game of Thrones | Houses, Characters & More');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Nam Explore the world of Game of Thrones: houses, characters, battles and history.'
+    });
+    this.meta.updateTag({ name: 'keywords', content: 'Game of Thrones, Houses, Characters, Stark, Lannister' });
+    this.meta.addTags([
+      { name: 'robots', content: 'index, follow' },
+      { property: 'og:title', content: 'Angular SSR SEO Example - Book Detail' },
+      { property: 'og:description', content: 'Chi tiết sách Angular với SSR SEO friendly' },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:url', content: 'ng-game-of-thrones.vercel.app/got-house.webp' },
+      { property: 'og:image', content: 'ng-game-of-thrones.vercel.app/got-house.webp' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Angular SSR SEO Example - Book Detail' },
+      { name: 'twitter:description', content: 'Chi tiết sách Angular với SSR SEO friendly' },
+      { name: 'twitter:image', content: 'ng-game-of-thrones.vercel.app/got-house.webp' }
+    ]);
+  }
 
   public naviagteTo(route: string): void {
     this.router.navigate([route]);

@@ -1,0 +1,6 @@
+# Cho phép Google và các bot khác crawl toàn bộ site
+User-agent: *
+Allow: /
+
+# Link tới sitemap
+Sitemap: https://ng-game-of-thrones.vercel.app/sitemap.xml
