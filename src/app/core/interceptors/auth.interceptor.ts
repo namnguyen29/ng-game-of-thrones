@@ -1,12 +1,14 @@
 import { HttpHeaders, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 import { switchMap, take } from 'rxjs';
 
 import { AuthService } from '@app-shared/services';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const accessToken$ = inject(AuthService).dumpAccessToken$;
+  const authService = inject(AuthService);
+  const accessToken$ = toObservable(authService.accessToken);
 
   return accessToken$.pipe(
     take(1),

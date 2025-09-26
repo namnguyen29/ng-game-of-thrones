@@ -9,8 +9,7 @@ export const authGuard: CanActivateChildFn = () => {
 
   if (authService.isAuthenticated) {
     return true;
-  } else {
-    router.navigate(['/login']);
-    return false;
   }
+
+  return router.createUrlTree(['/login']);
 };

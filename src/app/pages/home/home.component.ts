@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { ResourceCardComponent } from '@app-shared/components';
@@ -14,9 +14,8 @@ import { ResourceCardComponent } from '@app-shared/components';
 export class HomeComponent {
   private readonly router = inject(Router);
   private readonly meta = inject(Meta);
-  private readonly title = inject(Title);
+
   constructor() {
-    this.title.setTitle('Game of Thrones | Houses, Characters & More');
     this.meta.updateTag({
       name: 'description',
       content: 'Nam Explore the world of Game of Thrones: houses, characters, battles and history.'
