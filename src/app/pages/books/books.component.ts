@@ -35,7 +35,11 @@ export class BooksComponent implements OnInit {
   public ngOnInit(): void {
     this.isLoading = true;
     this.books$ = this.bookApi.getBooks().pipe(
-      map((books) => books.map((book) => ({ ...book, url: StringUtil.getResourceIdFromUrl(book.url) }))),
+      map((books) =>
+        books.map((book) => {
+          return { ...book, url: StringUtil.getResourceIdFromUrl(book.url) };
+        })
+      ),
       finalize(() => (this.isLoading = false))
     );
   }
