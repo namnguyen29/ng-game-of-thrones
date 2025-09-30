@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -29,23 +29,29 @@ import type { House, HouseFilter } from '@app-shared/models';
 export class HousesComponent implements OnInit {
   private readonly houseApi = inject(HouseApi);
   private readonly router = inject(Router);
+  private readonly platformId = inject(PLATFORM_ID);
   public houses$!: Observable<House[]>;
-  public isLoading = false;
+  public isLoading = signal(true);
 
   public ngOnInit(): void {
-    this.isLoading = true;
-    this.houses$ = this.houseApi.getHouses().pipe(finalize(() => (this.isLoading = false)));
+    if (isPlatformBrowser(this.platformId)) {
+      this.houses$ = this.houseApi.getHouses().pipe(
+        finalize(() => {
+          this.isLoading.set(false);
+        })
+      );
+    }
   }
 
-  public goHome(): void {
-    this.router.navigate(['/']);
+  public async goHome(): Promise<void> {
+    await this.router.navigate(['/']);
   }
 
-  public viewHouse(id: string): void {
-    this.router.navigate(['houses', id]);
+  public async viewHouse(id: string): Promise<void> {
+    await this.router.navigate(['houses', id]);
   }
 
-  public handleHouseFilter(value: HouseFilter): void {
+  public async handleHouseFilter(value: HouseFilter): Promise<void> {
     const { name, region, words, hasAncestralWeapons, hasDiedOut, hasSeats, hasTitles, hasWords } = value;
     const queryParams = {
       name: name !== '' && name !== null ? name : null,
@@ -58,7 +64,7 @@ export class HousesComponent implements OnInit {
       hasWords: !hasWords ? null : true
     };
 
-    this.router.navigate([], {
+    await this.router.navigate([], {
       queryParams,
       queryParamsHandling: 'merge'
     });

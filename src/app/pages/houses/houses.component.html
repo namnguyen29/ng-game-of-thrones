@@ -8,7 +8,7 @@
     <app-house-filter (filter)="handleHouseFilter($event)"></app-house-filter>
   </div>
 
-  @if (isLoading) {
+  @if (isLoading()) {
     <app-cards-skeleton></app-cards-skeleton>
   }
 
